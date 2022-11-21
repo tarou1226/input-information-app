@@ -40,4 +40,36 @@ fn main() {
     let mut buf = String::new();
     let mut num = 0;
     let mut info = Information::new();
+    loop {
+        print!("input name -> ");
+        stdout().flush().unwrap();
+        let byte = stdin().read_line(&mut buf).unwrap();
+        if byte == 0 {
+            break;
+        }
+        info.input_name(&buf.trim());
+        println!("{}", info.name);
+        buf.clear();
+
+        print!("input age -> ");
+        stdout().flush().unwrap();
+        let byte = stdin().read_line(&mut buf).unwrap();
+        if byte == 0 {
+            break;
+        }
+        num = buf.trim().parse().unwrap();
+        let age_class = info.input_age(&num);
+        println!("{}", age_class);
+        buf.clear();
+
+        print!("input hobby -> ");
+        stdout().flush().unwrap();
+        let byte = stdin().read_line(&mut buf).unwrap();
+        if byte == 0 {
+            break;
+        }
+        info.input_hobby(&buf.trim());
+        println!("{}", info.hobby);
+        buf.clear();
+    }
 }
