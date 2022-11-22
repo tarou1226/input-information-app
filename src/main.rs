@@ -19,8 +19,8 @@ impl Information {
         self.name = input.to_string();
     }
 
-    pub fn input_age(&mut self, input: &i32) -> &str {
-        self.age = *input;
+    pub fn input_age(&mut self, input: i32) -> &str {
+        self.age = input;
         match input {
             0..=5 => "babby",
             6..=18 => "young",
@@ -38,7 +38,6 @@ impl Information {
 
 fn main() {
     let mut buf = String::new();
-    let mut num = 0;
     let mut info = Information::new();
     loop {
         print!("input name -> ");
@@ -47,7 +46,7 @@ fn main() {
         if byte == 0 {
             break;
         }
-        info.input_name(&buf.trim());
+        info.input_name(buf.trim());
         println!("{}", info.name);
         buf.clear();
 
@@ -57,8 +56,8 @@ fn main() {
         if byte == 0 {
             break;
         }
-        num = buf.trim().parse().unwrap();
-        let age_class = info.input_age(&num);
+        let num = buf.trim().parse().unwrap();
+        let age_class = info.input_age(num);
         println!("{}", age_class);
         buf.clear();
 
@@ -68,7 +67,7 @@ fn main() {
         if byte == 0 {
             break;
         }
-        info.input_hobby(&buf.trim());
+        info.input_hobby(buf.trim());
         println!("{}", info.hobby);
         buf.clear();
     }
